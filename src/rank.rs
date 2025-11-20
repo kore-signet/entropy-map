@@ -55,6 +55,7 @@ pub trait RankedBitsAccess {
 }
 
 #[derive(Debug, Default)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "rkyv_derive", derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize))]
 #[cfg_attr(feature = "rkyv_derive", archive_attr(derive(rkyv::CheckBytes)))]
 pub struct RankedBits {
@@ -69,6 +70,7 @@ pub struct RankedBits {
 /// because of alignment differences between `x86_64` and `aarch64` architectures.
 /// See https://github.com/rkyv/rkyv/issues/409 for more details.
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "rkyv_derive", derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize))]
 #[cfg_attr(feature = "rkyv_derive", archive_attr(derive(rkyv::CheckBytes)))]
 pub struct L12Rank([u8; 16]);

@@ -19,6 +19,7 @@ use crate::mphf::{Mphf, MphfError, DEFAULT_GAMMA};
 
 /// An efficient, immutable hash map with values dictionary-packed for optimized space usage.
 #[derive(Default)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "rkyv_derive", derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize))]
 #[cfg_attr(feature = "rkyv_derive", archive_attr(derive(rkyv::CheckBytes)))]
 pub struct MapWithDict<K, V, const B: usize = 32, const S: usize = 8, ST = u8, H = WyHash>
